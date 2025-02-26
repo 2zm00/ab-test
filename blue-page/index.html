@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>파란색 페이지</title>
+    <script>
+        fetch("/count", { method: "POST" });
+
+        setInterval(async () => {
+            const response = await fetch("/count");
+            const data = await response.json();
+            document.getElementById("visits").textContent = data.visits;
+        }, 1000);
+    </script>
+</head>
+<body style="background-color: #4169E1; margin: 0; padding: 0; height: 100vh; display: flex; justify-content: center; align-items: center;">
+    <div style="text-align: center; color: white;">
+        <h1>파란색 페이지입니다</h1>
+        <p>방문자 수: <span id="visits">0</span>명</p>
+    </div>
+</body>
+</html>
