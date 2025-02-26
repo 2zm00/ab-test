@@ -19,6 +19,6 @@ spec:
         image: dwa010301/green-page:v1
         env:
         - name: REDIS_HOST
-          value: "redis"
+          value: 172.18.83.42
         ports:
         - containerPort: 80
