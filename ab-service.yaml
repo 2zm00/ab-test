@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ab-test
+spec:
+  selector:
+    app: ab-test
+  ports:
+  - port: 80
+    targetPort: 80
+  type: ClusterIP
