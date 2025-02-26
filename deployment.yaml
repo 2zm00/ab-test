@@ -1,0 +1,39 @@
+# Deployment 및 Service YAML
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: env-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: env-demo
+  template:
+    metadata:
+      labels:
+        app: env-demo
+    spec:
+      containers:
+      - name: env-demo
+        image: dwa010301/k8s-env-demo:latest  # 이미지 이름 변경 필요
+        ports:
+        - containerPort: 8000
+        envFrom:
+#        - configMapRef:
+#            name: env-demo-config
+        - secretRef:
+            name: env-demo-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: env-demo
+spec:
+  selector:
+    app: env-demo
+  ports:
+  - port: 80
+    targetPort: 8000
+    nodePort: 30080
+  type: NodePort
