@@ -18,6 +18,9 @@ spec:
         image: dwa010301/blue-page:v1
         ports:
         - containerPort: 80
+        env:
+        - name: REDIS_HOST
+          value: 172.18.83.42
 ---
 apiVersion: v1
 kind: Service
